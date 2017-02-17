@@ -1,0 +1,71 @@
+apply plugin: 'com.android.application'
+apply plugin: 'realm-android'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.0"
+    defaultConfig {
+        applicationId "com.dpanic.glocoexercise"
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            multiDexEnabled true
+        }
+    }
+}
+
+ext {
+    androidSupportVersion = "25.1.0"
+    firebaseVersion = "10.0.1" // upgrade to 10.0.1 to avoid security exception too many alarms
+    rxJavaVersion = "1.2.1"
+    rxAndroidVersion = "1.2.1"
+    butterKnifeVersion = "8.4.0"
+    glideVersion = "3.7.0"
+    jsoupVersion = "1.9.2"
+    eventBusVersion = "3.0.0"
+    materialRippleVersion = "1.0.2"
+    okhttpVersion = "3.4.1"
+    freshdownloadviewVersion = "1.0"
+    stethoVersion = "1.4.1"
+    flowlayoutmanagerVersion = "1.2.3.2"
+    daggerVersion = "2.8"
+    timberVersion = "4.5.1"
+    volleyVersion = "1.0.0"
+    leakCanaryVersion = "1.5"
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.1.0'
+    compile 'com.android.support:design:25.1.0'
+    testCompile 'junit:junit:4.12'
+
+    compile "io.reactivex:rxjava:${rxJavaVersion}"
+    compile "io.reactivex:rxandroid:${rxAndroidVersion}"
+
+    compile "com.jakewharton.timber:timber:${timberVersion}"
+    compile "com.jakewharton:butterknife:${butterKnifeVersion}"
+    compile "org.greenrobot:eventbus:${eventBusVersion}"
+    compile "com.android.volley:volley:${volleyVersion}"
+
+    compile "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}"
+
+    annotationProcessor "com.jakewharton:butterknife-compiler:${butterKnifeVersion}"
+
+    compile 'com.google.android.gms:play-services-location:10.2.0'
+    compile 'com.google.android.gms:play-services:10.2.0'
+
+    compile 'com.facebook.stetho:stetho:1.4.1'
+    compile 'com.uphyca:stetho_realm:2.0.0'
+}
